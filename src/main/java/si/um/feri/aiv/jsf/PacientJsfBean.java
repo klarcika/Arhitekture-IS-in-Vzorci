@@ -7,6 +7,7 @@ import si.um.feri.aiv.dao.PacientMemoryDao;
 import si.um.feri.aiv.vao.Pacient;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,18 +20,30 @@ public class PacientJsfBean implements Serializable {
         Logger log= Logger.getLogger(PacientJsfBean.class.toString());
 
         private PacientDao dao= PacientMemoryDao.getInstance();
+        List<Pacient>  getVsiPacientiRet=null;
 
-        private Pacient izbranaPacient=new Pacient();
+        private Pacient izbranPacient=new Pacient();
 
         private String izbranEmail;
 
-        public List<Pacient> getVsePaciente() throws Exception {
-            return dao.vrniPaciente();
+        public List<Pacient> getVsiPacienti(){
+            log.info("JSF BEAN: getVsiPacienti");
+
+            if (getVsiPacientiRet==null) {
+                try {
+                    getVsiPacientiRet=dao.vrniPaciente();
+                } catch (Exception e) {
+                    getVsiPacientiRet=new ArrayList<>();
+                }
+            }
+
+            return getVsiPacientiRet;
         }
 
         public String shraniPacienta() throws Exception {
-            dao.shrani(izbranaPacient);
-            return "vse";
+            log.info("JSF BEAN: dodajPacienta");
+            dao.shrani(izbranPacient);
+            return "pacient dodan/ shranjen";
         }
 
         public void izbrisiPacienta(Pacient o) throws Exception {
@@ -70,11 +83,13 @@ public class PacientJsfBean implements Serializable {
         }
 
         public Pacient getIzbranaPacient() {
-            return izbranaPacient;
+            return izbranPacient;
         }
 
         public void setIzbranPacient(Pacient izbranaOseba) {
-            this.izbranaPacient = izbranaOseba;
+            this.izbranPacient = izbranaOseba;
         }
+
+
 
     }

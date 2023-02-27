@@ -11,9 +11,15 @@ import java.util.logging.Logger;
 public class PacientMemoryDao implements PacientDao {
 
     Logger log=Logger.getLogger(PacientMemoryDao.class.toString());
+    private static PacientMemoryDao instance=new PacientMemoryDao();
+
+    public static PacientMemoryDao getInstance() {
+        return instance;
+    }
 
     private static List<Pacient> pacienti= Collections.synchronizedList(new ArrayList<Pacient>());
 
+    @Override
     public Pacient najdi(String email)  {
         for (Pacient o : pacienti)
             if (o.getEmail().equals(email))
@@ -31,12 +37,13 @@ public class PacientMemoryDao implements PacientDao {
         log.info("DAO: Vracam vse paciente");
         return pacienti;
     }
-
-
-    private static PacientMemoryDao instance=new PacientMemoryDao();
-
-    public static PacientMemoryDao getInstance() {
-        return instance;
+    @Override
+    public void izbrisi(String email) {
+        log.info("DAO: brišem "+email);
+        for (Iterator<Pacient> i = pacienti.iterator(); i.hasNext();) {
+            if (i.next().getEmail().equals(email))
+                i.remove();
+        }
     }
 
 //    @Override
@@ -45,14 +52,6 @@ public class PacientMemoryDao implements PacientDao {
 //        return pacienti;
 //    }
 
-//    @Override
-//    public Pacient najdi(String email)  {
-//        log.info("DAO: iščem "+email);
-//        for (Pacient o : osebe)
-//            if (o.getEmail().equals(email))
-//                return o;
-//        return null;
-//    }
 
 //    @Override
 //    public void shrani(Pacient o)  {
@@ -64,14 +63,7 @@ public class PacientMemoryDao implements PacientDao {
 //        pacienti.add(o);
 //    }
 
-    @Override
-    public void izbrisi(String email) {
-        log.info("DAO: brišem "+email);
-        for (Iterator<Pacient> i = pacienti.iterator(); i.hasNext();) {
-            if (i.next().getEmail().equals(email))
-                i.remove();
-        }
-    }
+
 
 //    @Override
 //    public void izbrisiKontakt(int idKontakta, String emailOsebe) {

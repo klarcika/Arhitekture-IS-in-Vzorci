@@ -7,6 +7,7 @@ import si.um.feri.aiv.dao.ZdravnikMemoryDao;
 import si.um.feri.aiv.vao.Zdravnik;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,16 +23,27 @@ public class ZdravnikJsfBean implements Serializable {
     private ZdravnikDao dao= ZdravnikMemoryDao.getInstance();
 
     private Zdravnik izbranZdravnik=new Zdravnik();
-
+    List<Zdravnik> getVsiZdravnikiRet=null;
     private String izbranEmail;
 
-    public List<Zdravnik> getVseOsebe() throws Exception {
-        return dao.izpisiVseZdravnike();
+    public List<Zdravnik> getVsiZdravniki(){
+        log.info("JSF BEAN: getVsiZdravniki");
+
+        if (getVsiZdravnikiRet==null) {
+            try {
+                getVsiZdravnikiRet=dao.izpisiVseZdravnike();
+            } catch (Exception e) {
+                getVsiZdravnikiRet=new ArrayList<>();
+            }
+        }
+
+        return getVsiZdravnikiRet;
     }
 
     public String shraniZdravnika() throws Exception {
+        log.info("JSF BEAN: dodajZdravnika");
         dao.shraniZdravnika(izbranZdravnik);
-        return "vse";
+        return "Zdravnik dodan";
     }
 
     public void izbrisiZdravnika(Zdravnik o) throws Exception {

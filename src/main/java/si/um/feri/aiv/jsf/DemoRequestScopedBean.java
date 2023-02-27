@@ -10,7 +10,7 @@ import si.um.feri.aiv.dao.ZdravnikMemoryDao;
 import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
 
-@Named("demors")
+//@Named("demors")
 @RequestScoped
 public class DemoRequestScopedBean implements Serializable {
 

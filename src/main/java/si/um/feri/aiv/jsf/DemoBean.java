@@ -9,7 +9,7 @@ import si.um.feri.aiv.dao.ZdravnikMemoryDao;
 import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
 
-@Named("demo")
+
 @SessionScoped
 public class DemoBean implements Serializable {
 
