@@ -20,12 +20,12 @@
                 <table border="0">
                     <tr>
                         <td>Ime:</td>
-                        <td><h:inputText value="#{demo.novZ.ime}"/></td>
+                        <td><h:inputText value="#{demors.izbranZdravnik.ime}"/></td>
                     </tr>
                     <tr>
                         <td>Priimek:</td>
                         <td>
-                            <h:inputText id="n_priimek" value="#{demo.novZ.priimek}">
+                            <h:inputText id="n_priimek" value="#{demors.izbranZdravnik.priimek}">
                                 <f:validateRequired />
                             </h:inputText> *
                             <h:message for="n_priimek" style="color:hotpink" />
@@ -34,7 +34,7 @@
                     <tr>
                         <td>E-mail:</td>
                         <td>
-                            <h:inputText id="n_email" value="#{demo.novZ.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
+                            <h:inputText id="n_email" value="#{demors.izbranZdravnik.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
                                 <f:validateRequired />
                                 <f:validateRegex pattern=".+\@.+\..+"  />
                             </h:inputText> *
@@ -45,7 +45,7 @@
                     <tr>
                         <td>Stevilo pacientov:</td>
                         <td>
-                            <input type="number" jsf:value="#{demo.novZ.stPacientov}" >
+                            <input type="number" jsf:value="#{demors.izbranZdravnik.stPacientov}" >
                             </input>
 
                             <!--
@@ -56,7 +56,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td rowspan="2"><h:commandButton value="Dodaj Zdravnika" actionListener="#{demo.dodajZdravnika}" action="vsiZdravniki.xhtml"/></td>
+                        <td>Pacienti?:</td> <!-- tu morem to popravit pa nardit da bo combobox Xo-->
+                        <td>
+                            <h:inputText  value="#{demors.izbranZdravnik.pacientList}" validatorMessage="">
+                                <f:validateRequired />
+                            </h:inputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><h:commandButton value="Dodaj Zdravnika" actionListener="#{demors.shraniZdravnika}" action="vsiZdravniki.xhtml"/></td>
                     </tr>
                 </table>
 

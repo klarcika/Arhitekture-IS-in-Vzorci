@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+
 public class Zdravnik {
 
     public Zdravnik(){
@@ -16,7 +17,7 @@ public class Zdravnik {
             this.priimek = priimek;
             this.email = email;
             this.stPacientov=stPacientov;
-            List<Pacient> pacients;
+            List<Pacient> pacienti;
         }
         public Zdravnik(String ime, String priimek, String email) {
             this.ime = ime;
@@ -35,6 +36,13 @@ public class Zdravnik {
 
        List<Pacient> pacientList;
 
+    public List<Pacient> getPacientList() {
+        return pacientList;
+    }
+
+    public void setPacientList(List<Pacient> pacients) {
+        this.pacientList = pacients;
+    }
 
         public String getIme() {
             return ime;

@@ -15,11 +15,11 @@ import java.util.logging.Logger;
 @SessionScoped
 public class PacientJsfBean implements Serializable {
 
-        private static final long serialVersionUID = -8979220536758073133L;
+        private static final long serialVersionUID = -4576958665520233267L;
 
         Logger log= Logger.getLogger(PacientJsfBean.class.toString());
 
-        private PacientDao dao= PacientMemoryDao.getInstance();
+        private PacientMemoryDao dao= PacientMemoryDao.getInstance();
         List<Pacient>  getVsiPacientiRet=null;
 
         private Pacient izbranPacient=new Pacient();
@@ -43,8 +43,11 @@ public class PacientJsfBean implements Serializable {
         public String shraniPacienta() throws Exception {
             log.info("JSF BEAN: dodajPacienta");
             dao.shrani(izbranPacient);
+            izbranPacient=new Pacient();
             return "pacient dodan/ shranjen";
         }
+
+
 
         public void izbrisiPacienta(Pacient o) throws Exception {
             dao.izbrisi(o.getEmail());
@@ -82,14 +85,13 @@ public class PacientJsfBean implements Serializable {
             return izbranEmail;
         }
 
-        public Pacient getIzbranaPacient() {
+        public Pacient getIzbranPacient() {
             return izbranPacient;
         }
 
-        public void setIzbranPacient(Pacient izbranaOseba) {
-            this.izbranPacient = izbranaOseba;
+        public void setIzbranPacient(Pacient izbranPacient) {
+            this.izbranPacient = izbranPacient;
         }
-
 
 
     }

@@ -14,12 +14,12 @@
 					<table border="0">
 						<tr>
 							<td>Ime:</td>
-							<td><h:inputText value="#{demo.novP.ime}"/></td>
+							<td><h:inputText value="#{demo.izbranPacient.ime}"/></td>
 						</tr>
 						<tr>
 							<td>Priimek:</td>
 							<td>
-								<h:inputText id="n_priimek" value="#{demo.novP.priimek}">
+								<h:inputText id="n_priimek" value="#{demo.izbranPacient.priimek}">
 									<f:validateRequired />
 								</h:inputText> *
 								<h:message for="n_priimek" style="color:hotpink" />
@@ -28,7 +28,7 @@
 						<tr>
 							<td>E-mail:</td>
 							<td>
-								<h:inputText id="n_email" value="#{demo.novP.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
+								<h:inputText id="n_email" value="#{demo.izbranPacient.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
 									<f:validateRequired />
 									<f:validateRegex pattern=".+\@.+\..+"  />
 								</h:inputText> *
@@ -39,7 +39,7 @@
 						<tr>
 							<td>Datum rojstva:</td>
 							<td>
-								<input type="date" jsf:value="#{demo.novP.datumRojstva.time}" >
+								<input type="date" jsf:value="#{demo.izbranPacient.datumRojstva.time}" >
 									<f:convertDateTime pattern="yyyy-MM-dd" />
 								</input>
 								
@@ -53,7 +53,7 @@
 						<tr>
 							<td>Posebnosti:</td>
 							<td>
-								<h:inputText id="n_posebnosti" value="#{demo.novP.posebnosti}">
+								<h:inputText id="n_posebnosti" value="#{demo.izbranPacient.posebnosti}">
 									<f:validateRequired />
 								</h:inputText> *
 								<h:message for="n_posebnosti" style="color:hotpink" />
@@ -61,7 +61,7 @@
 						</tr>
 						
 						<tr>
-							<td rowspan="2"><h:commandButton value="Dodaj" actionListener="#{demo.dodajPacienta}" action="vse.xhtml"/></td>
+							<td rowspan="2"><h:commandButton value="Dodaj" actionListener="#{demo.shraniPacienta}" action="vse.xhtml"/></td>
 						</tr>
 					</table>
 					 

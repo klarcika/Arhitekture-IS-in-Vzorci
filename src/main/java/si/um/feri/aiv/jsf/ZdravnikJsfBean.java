@@ -4,6 +4,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import si.um.feri.aiv.dao.ZdravnikDao;
 import si.um.feri.aiv.dao.ZdravnikMemoryDao;
+import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
 
 import java.io.Serializable;
@@ -50,21 +51,26 @@ public class ZdravnikJsfBean implements Serializable {
         dao.izbrisiZdravnika(o.getEmail());
     }
 
-//    public void dodajKontakt() throws Exception {
-//        dao.shraniKontakt(new Kontakt(), izbranZdravnik.getEmail());
-//        izbranaOseba=dao.najdi(izbranZdravnik.getEmail());
-//    }
+    public void shraniPacienta() throws Exception {
+        dao.shraniPacienta(new Pacient(), izbranZdravnik.getEmail());
+        izbranZdravnik=dao.najdi(izbranZdravnik.getEmail());
+    }
 
-//    public void shraniKontakt(Kontakt k) throws Exception {
-//        k.setUrejanje(false);
-//        dao.shraniKontakt(k, izbranZdravnik.getEmail());
-//        izbranaOseba=dao.najdi(izbranZdravnik.getEmail());
-//    }
+    public void dodajPacienta() throws Exception {
+        dao.shraniPacienta(new Pacient(), izbranZdravnik.getEmail());
+        izbranZdravnik=dao.najdi(izbranZdravnik.getEmail());
+    }
 
-//    public void izbrisiKontakt(Kontakt k) throws Exception {
-//        dao.izbrisiKontakt(k.getId(), izbranZdravnik.getEmail());
-//        izbranaOseba=dao.najdi(izbranZdravnik.getEmail());
-//    }
+    public void shraniKontakt(Pacient k) throws Exception {
+       // k.setUrejanje(false);
+        dao.shraniPacienta(k, izbranZdravnik.getEmail());
+        izbranZdravnik=dao.najdi(izbranZdravnik.getEmail());
+    }
+
+    public void izbrisiPacienta(Pacient k) throws Exception {
+        dao.izbrisiPacienta(k.getId(), izbranZdravnik.getEmail());
+        izbranZdravnik=dao.najdi(izbranZdravnik.getEmail());
+    }
 
 //    public void urediKontakt(Kontakt k) throws Exception {
 //        k.setUrejanje(true);

@@ -1,5 +1,6 @@
 package si.um.feri.aiv.dao;
 
+import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
 
 import java.util.ArrayList;
@@ -47,5 +48,26 @@ public class ZdravnikMemoryDao implements ZdravnikDao {
             if (i.next().getEmail().equals(email))
                 i.remove();
         }
+    }
+
+    @Override
+    public void izbrisiPacienta(int idKontakta, String emailPacienta) {
+        log.info("DAO: brišem pacienta "+idKontakta+" pacient "+emailPacienta);
+        Zdravnik najdena= najdi(emailPacienta);
+        if (najdena==null) return;
+        for (Iterator<Pacient> i = najdena.getPacientList().iterator(); i.hasNext();) {
+            if (i.next().getId()==idKontakta)
+                i.remove();
+        }
+    }
+
+    @Override
+    public void shraniPacienta(Pacient k, String emailPacienta) {
+        log.info("DAO: shranjujem kontakt "+k+" osebi "+emailPacienta);
+        Zdravnik najdena=najdi(emailPacienta);
+        if (najdena==null) return;
+        izbrisiPacienta(k.getId(), emailPacienta);
+//        k.setId(najdena.getMaxKontaktId()+1);
+//        najdena.getKontakti().add(k);
     }
 }

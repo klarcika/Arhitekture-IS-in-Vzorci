@@ -27,6 +27,8 @@ public class Pacient {
 
         }
 
+        private int id;
+
         private String ime;
 
         private String priimek;
@@ -78,9 +80,15 @@ public class Pacient {
             return posebnosti;
         }
 
+        public int getId() {
+        return id;
+        }
 
+        public void setId(int id) {
+        this.id = id;
+        }
 
-        private static SimpleDateFormat sdf=new SimpleDateFormat("dd. MM. yyyy HH:mm:ss");
+    private static SimpleDateFormat sdf=new SimpleDateFormat("dd. MM. yyyy HH:mm:ss");
         @Override
         public String toString() {
             return ime + " " + priimek + ","+" ("+email+");"+ "; posebnosti: "+ posebnosti + "datum rojstva: "+sdf.format(datumRojstva.getTime());

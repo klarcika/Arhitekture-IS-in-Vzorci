@@ -14,7 +14,7 @@ import si.um.feri.aiv.vao.Zdravnik;
 @RequestScoped
 public class DemoRequestScopedBean implements Serializable {
 
-	private static final long serialVersionUID = -7804846070746699266L;
+	//private static final long serialVersionUID = -7804846070746699266L;
 
 	Logger log=Logger.getLogger(DemoRequestScopedBean.class.toString());
 
