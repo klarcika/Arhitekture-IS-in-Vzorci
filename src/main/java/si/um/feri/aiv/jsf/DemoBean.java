@@ -1,11 +1,11 @@
-package si.um.feri.aiv;
+package si.um.feri.aiv.jsf;
 
 import java.io.Serializable;
 import java.util.logging.Logger;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-import si.um.feri.aiv.dao.PacientDao;
-import si.um.feri.aiv.dao.ZdravnikDao;
+import si.um.feri.aiv.dao.PacientMemoryDao;
+import si.um.feri.aiv.dao.ZdravnikMemoryDao;
 import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
 
@@ -17,8 +17,8 @@ public class DemoBean implements Serializable {
 
 	Logger log=Logger.getLogger(DemoBean.class.toString());
 	
-	private ZdravnikDao zdravnikDao=new ZdravnikDao();
-	private PacientDao pacientDao=new PacientDao();
+	private ZdravnikMemoryDao zdravnikDao=new ZdravnikMemoryDao();
+	private PacientMemoryDao pacientDao=new PacientMemoryDao();
 	private Zdravnik novZ= new Zdravnik();
 	private Pacient novP=new Pacient();
 
@@ -34,6 +34,8 @@ public class DemoBean implements Serializable {
 //		return "podrobnosti.xhtml";
 //	}
 
+	// ---------------Pacient------------------
+
 	public void dodajPacienta() {
 		log.info("JSF BEAN: dodajPacienta");
 		try {
@@ -43,6 +45,8 @@ public class DemoBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
+	// -------------------- zdravnik ------------------
 	public void dodajZdravnika() {
 		log.info("JSF BEAN: dodajZdravnika");
 		try {
@@ -53,7 +57,7 @@ public class DemoBean implements Serializable {
 		}
 	}
 
-	//to spodaj sploh ne uporabim
+	//to spodaj sploh ne uporabim -------------------
 	public Pacient getNovP() {
 		return novP;
 	}

@@ -1,12 +1,12 @@
-package si.um.feri.aiv;
+package si.um.feri.aiv.jsf;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import si.um.feri.aiv.dao.PacientDao;
-import si.um.feri.aiv.dao.ZdravnikDao;
+import si.um.feri.aiv.dao.PacientMemoryDao;
+import si.um.feri.aiv.dao.ZdravnikMemoryDao;
 import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
 
@@ -19,8 +19,8 @@ public class DemoRequestScopedBean implements Serializable {
 	Logger log=Logger.getLogger(DemoRequestScopedBean.class.toString());
 
 
-	private ZdravnikDao zdravnikDao=new ZdravnikDao();
-	private PacientDao pacientDao=new PacientDao();
+	private ZdravnikMemoryDao zdravnikDao=new ZdravnikMemoryDao();
+	private PacientMemoryDao pacientDao=new PacientMemoryDao();
 
 	List<Zdravnik> getVsiZdravnikiRet=null;
 	List<Pacient>  getVsiPacientiRet=null;
@@ -30,7 +30,7 @@ public class DemoRequestScopedBean implements Serializable {
 		
 		if (getVsiZdravnikiRet==null) {
 			try {
-				getVsiZdravnikiRet=zdravnikDao.izpisiVseZdravnik();
+				getVsiZdravnikiRet=zdravnikDao.izpisiVseZdravnike();
 			} catch (Exception e) {
 				getVsiZdravnikiRet=new ArrayList<>();
 			}

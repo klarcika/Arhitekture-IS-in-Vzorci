@@ -6,27 +6,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class PacientDao {
+public interface PacientDao {
 
-    Logger log=Logger.getLogger(PacientDao.class.toString());
+    List<Pacient> vrniPaciente();
+    Pacient najdi(String email);
+    void shrani(Pacient o);
+    void izbrisi(String email);
 
-    private static List<Pacient> pacienti= Collections.synchronizedList(new ArrayList<Pacient>());
 
-//    public Oseba najdi(String email)  {
-//        for (Oseba o : osebe)
-//            if (o.getEmail().equals(email))
-//                return o;
-//        return new Oseba();
-//    }
+//    void shraniKontakt(Kontakt k,String emailOsebe);
+//    void izbrisiKontakt(int idKontakta,String emailOsebe);
 
-    public void shrani(Pacient p)  {
-        log.info("DAO: shranjujem "+p);
-        pacienti.add(p);
-    }
-
-    public List<Pacient> vrniPaciente() {
-        log.info("DAO: Vracam vse paciente");
-        return pacienti;
-    }
 
 }
