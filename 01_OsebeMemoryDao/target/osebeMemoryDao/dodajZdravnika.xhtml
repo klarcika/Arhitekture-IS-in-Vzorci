@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/template/template.xhtml">
+    <div id="header">
+        <ui:insert name="header">
+            <a href="#{facesContext.externalContext.applicationContextPath}/faces/vsiZdravniki.xhtml">Vsi Zdravniki</a>
+            <hr/>
+        </ui:insert>
+    </div>
+
+    <ui:define name="content">
+        <f:view>
+            <h:form>
+
+                <table border="0">
+                    <tr>
+                        <td>Ime:</td>
+                        <td><h:inputText value="#{demors.izbranZdravnik.ime}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Priimek:</td>
+                        <td>
+                            <h:inputText id="n_priimek" value="#{demors.izbranZdravnik.priimek}">
+                                <f:validateRequired />
+                            </h:inputText> *
+                            <h:message for="n_priimek" style="color:hotpink" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>E-mail:</td>
+                        <td>
+                            <h:inputText id="n_email" value="#{demors.izbranZdravnik.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
+                                <f:validateRequired />
+                                <f:validateRegex pattern=".+\@.+\..+"  />
+                            </h:inputText> *
+                            <h:message for="n_email" style="color:hotpink" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Stevilo pacientov:</td>
+                        <td>
+                            <input type="number" jsf:value="#{demors.izbranZdravnik.stPacientov}" >
+                            </input>
+
+                            <!--
+                                Moznost 2:
+                                inputText + convertDateTime + pattern
+                             -->
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pacienti?:</td> <!-- tu morem to popravit pa nardit da bo combobox Xo-->
+                        <td>
+                            <h:inputText  value="#{demors.izbranZdravnik.pacientList}" validatorMessage="">
+                                <f:validateRequired />
+                            </h:inputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><h:commandButton value="Dodaj Zdravnika" actionListener="#{demors.shraniZdravnika}" action="vsiZdravniki.xhtml"/></td>
+                    </tr>
+                </table>
+
+            </h:form>
+        </f:view>
+    </ui:define>
+
+</ui:composition>
+
+</html>
+        <!--<tr>-->
+        <!--<td>Spol:</td>-->
+        <!--<td>-->
+        <!--	<h:selectOneRadio value="#{demo.novaOseba.spol}">-->
+        <!--		<f:selectItem itemValue="M" itemLabel="Moski" />-->
+        <!--		<f:selectItem itemValue="Z" itemLabel="Zenska" />-->
+        <!--	</h:selectOneRadio>-->
+        <!--</td>-->
+        <!--</tr>-->
