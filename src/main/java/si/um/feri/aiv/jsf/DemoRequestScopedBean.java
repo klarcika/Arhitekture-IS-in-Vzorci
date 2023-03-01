@@ -11,7 +11,6 @@ import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
 
 //@Named("demors")
-@RequestScoped
 public class DemoRequestScopedBean implements Serializable {
 
 	//private static final long serialVersionUID = -7804846070746699266L;

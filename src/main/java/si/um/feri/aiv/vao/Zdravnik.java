@@ -17,7 +17,6 @@ public class Zdravnik {
             this.priimek = priimek;
             this.email = email;
             this.stPacientov=stPacientov;
-            List<Pacient> pacienti;
         }
         public Zdravnik(String ime, String priimek, String email) {
             this.ime = ime;
@@ -34,15 +33,7 @@ public class Zdravnik {
 
        private int stPacientov;
 
-       List<Pacient> pacientList;
 
-    public List<Pacient> getPacientList() {
-        return pacientList;
-    }
-
-    public void setPacientList(List<Pacient> pacients) {
-        this.pacientList = pacients;
-    }
 
         public String getIme() {
             return ime;

@@ -12,7 +12,7 @@ public interface ZdravnikDao {
     void shraniZdravnika(Zdravnik o);
     void izbrisiZdravnika(String email);
 
-    void shraniPacienta(Pacient k, String emailPacienta);
-    void izbrisiPacienta(int idPacienta,String emailPacienta);
+//    void shraniPacienta(Pacient k, String emailPacienta);
+//    void izbrisiPacienta(int idPacienta,String emailPacienta);
 
 }

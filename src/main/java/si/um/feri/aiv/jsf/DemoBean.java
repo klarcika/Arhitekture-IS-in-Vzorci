@@ -10,7 +10,7 @@ import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
 
 //@Named("demo")
-@SessionScoped
+
 public class DemoBean implements Serializable {
 
 	//private static final long serialVersionUID = -4576958665520233267L;

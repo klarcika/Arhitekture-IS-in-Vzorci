@@ -18,33 +18,42 @@ public class PacientMemoryDao implements PacientDao {
     }
 
     private static List<Pacient> pacienti= Collections.synchronizedList(new ArrayList<Pacient>());
-
-    @Override
-    public Pacient najdi(String email)  {
-        for (Pacient o : pacienti)
-            if (o.getEmail().equals(email))
-                return o;
-        return new Pacient();
-    }
-
-    @Override
-    public void shrani(Pacient p)  {
-        log.info("DAO: shranjujem "+p);
-        pacienti.add(p);
-    }
     @Override
     public List<Pacient> vrniPaciente() {
         log.info("DAO: Vracam vse paciente");
         return pacienti;
     }
     @Override
-    public void izbrisi(String email) {
-        log.info("DAO: brišem "+email);
-        for (Iterator<Pacient> i = pacienti.iterator(); i.hasNext();) {
-            if (i.next().getEmail().equals(email))
-                i.remove();
-        }
+    public Pacient najdi(String email)  {
+        log.info("DAO pacienti: finding "+email);
+        for (Pacient o : pacienti)
+            if (o.getEmail().equals(email))
+                return o;
+        return null;
     }
+
+    @Override
+    public void shrani(Pacient p)  {
+        log.info("DAO: shrani "+p);
+        if(najdi(p.getEmail())!=null) {
+            log.info("DAO: ? "+p);
+            izbrisi(p.getEmail());
+        }
+        pacienti.add(p);
+    }
+    @Override
+    public void izbrisi(String email) {
+        log.info("Deleting: " + email);
+        Pacient zbrisan = null;
+        for (Pacient pacient : pacienti){
+            if(pacient.getEmail().equals(email))
+                zbrisan = pacient;
+        }
+
+        if(zbrisan != null)
+            pacienti.remove(zbrisan);
+        }
+
 
 //    @Override
 //    public List<Pacient> vrniVse() {

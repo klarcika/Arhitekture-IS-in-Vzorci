@@ -3,7 +3,16 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui"
+
+>
+<h:nav>
+	<meta charset="UTF-8"/>
+	<title>(Umo)Bolnica</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+</h:nav>
 	
 	<ui:composition template="WEB-INF/template/template.xhtml">
 	
@@ -42,12 +51,6 @@
 								<input type="date" jsf:value="#{demo.izbranPacient.datumRojstva.time}" >
 									<f:convertDateTime pattern="yyyy-MM-dd" />
 								</input>
-								
-								<!-- 
-									Moznost 2:
-									inputText + convertDateTime + pattern
-								 -->
-								
 							</td>
 						</tr>
 						<tr>
