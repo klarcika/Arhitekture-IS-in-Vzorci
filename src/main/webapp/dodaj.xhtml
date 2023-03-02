@@ -1,86 +1,151 @@
 <!DOCTYPE html>
 <html
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:p="http://primefaces.org/ui"
-
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:o="http://omnifaces.org/ui"
+		xmlns:of="http://omnifaces.org/functions"
 >
-<h:nav>
+
+<h:head>
 	<meta charset="UTF-8"/>
-	<title>(Umo)Bolnica</title>
+	<title>Pacienti</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-</h:nav>
-	
-	<ui:composition template="WEB-INF/template/template.xhtml">
-	
-		<ui:define name="content">
-			<f:view>
-				<h:form>
+</h:head>
 
-					<table border="0">
-						<tr>
-							<td>Ime:</td>
-							<td><h:inputText value="#{demo.izbranPacient.ime}"/></td>
-						</tr>
-						<tr>
-							<td>Priimek:</td>
-							<td>
-								<h:inputText id="n_priimek" value="#{demo.izbranPacient.priimek}">
-									<f:validateRequired />
-								</h:inputText> *
-								<h:message for="n_priimek" style="color:hotpink" />
-							</td>
-						</tr>
-						<tr>
-							<td>E-mail:</td>
-							<td>
-								<h:inputText id="n_email" value="#{demo.izbranPacient.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
-									<f:validateRequired />
-									<f:validateRegex pattern=".+\@.+\..+"  />
-								</h:inputText> *
-								<h:message for="n_email" style="color:hotpink" />
-							</td>
-						</tr>
-						
-						<tr>
-							<td>Datum rojstva:</td>
-							<td>
-								<input type="date" jsf:value="#{demo.izbranPacient.datumRojstva.time}" >
-									<f:convertDateTime pattern="yyyy-MM-dd" />
-								</input>
-							</td>
-						</tr>
-						<tr>
-							<td>Posebnosti:</td>
-							<td>
-								<h:inputText id="n_posebnosti" value="#{demo.izbranPacient.posebnosti}">
-									<f:validateRequired />
-								</h:inputText> *
-								<h:message for="n_posebnosti" style="color:hotpink" />
-							</td>
-						</tr>
-						
-						<tr>
-							<td rowspan="2"><h:commandButton value="Dodaj" actionListener="#{demo.shraniPacienta}" action="vse.xhtml"/></td>
-						</tr>
-					</table>
-					 
-				</h:form>
-			</f:view>
-		</ui:define>
-		
-	</ui:composition>
+<h:body>
+	<nav class="navbar navbar-expand-sm bg-light justify-content-center">
+		<a class="navbar-brand" href="#">(Umo)bolnica</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link"
+					   href="#{facesContext.externalContext.applicationContextPath}/faces/dodajZdravnika.xhtml">Zdravniki</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"
+					   href="#{facesContext.externalContext.applicationContextPath}/faces/dodaj.xhtml">Pacienti</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<h1 class="mt-4">Dodaj pacienta</h1>
+
+	<h:form class="mt-4">
+		<div class="form-group row">
+			<label for="ime" class="col-sm-2 col-form-label">Ime:</label>
+			<div class="col-sm-10">
+				<h:inputText id="ime" value="#{demo.izbranPacient.ime}" class="form-control"
+							 style="width: 15%"></h:inputText>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="priimek" class="col-sm-2 col-form-label">Priimek:</label>
+			<div class="col-sm-10">
+				<h:inputText id="priimek" value="#{demo.izbranPacient.priimek}" class="form-control"
+							 style="width: 15%"></h:inputText>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="email" class="col-sm-2 col-form-label">Email:</label>
+			<div class="col-sm-10">
+				<h:inputText id="email" value="#{demo.izbranPacient.email}" class="form-control"
+							 style="width: 15%"></h:inputText>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Datum rojstva:</label>
+			<div class="col-sm-10">
+				<p:calendar value="#{demo.izbranPacient.datumRojstva}"
+							locale="sl"
+							showOn="button"
+							pattern="dd.MM.yyyy"
+							inputStyle="width: 15%"/>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="posebnosti" class="col-sm-2 col-form-label">Posebnosti:</label>
+			<div class="col-sm-10">
+				<h:inputTextarea row = "10" col = "10" id="posebnosti" value="#{demo.izbranPacient.posebnosti}" class="form-control"
+								 style="width: 15%" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="zdravniki" class="col-sm-2 col-form-label">Zdravnik:</label>
+			<div class="col-sm-10">
+				<h:selectOneMenu id="zdravniki" value="#{demo.izbranZdravnik}" converter="omnifaces.SelectItemsConverter">
+					<f:selectItems value="#{demors.vsiZdravniki}" var="zdravnikec" itemValue="#{zdravnikec}" itemLabel="#{zdravnikec.ime} #{zdravnikec.priimek} #{zdravnikec.email}"/>
+				</h:selectOneMenu>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-4 text-right">
+				<h:commandButton value="Dodaj" action="#{pacientBean.savePacient()}"
+								 class="btn btn-primary"></h:commandButton>
+			</div>
+		</div>
+	</h:form>
+
+
+	<h1 class="mt-4">Vsi Pacienti</h1>
+	<h:form>
+		<div class="table-responsive">
+			<h:dataTable value="#{pacientBean.allPacienti}" var="o"
+						 styleClass="table table-striped">
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					<h:link value="#{o.email}" outcome="detailsPacient">
+						<f:param name="email" value="#{o.email}"></f:param>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Priimek</f:facet>
+					#{o.priimek}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ime</f:facet>
+					#{o.ime}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Rojstni datum</f:facet>
+					#{o.rojstniDatum}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Zdravnik</f:facet>
+					#{o.zdravnik.toString()}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Posebnosti</f:facet>
+					#{o.posebnosti}
+				</h:column>
+				<h:column>
+					<h:link value="Edit" outcome="editPacient"
+							styleClass="btn btn-warning btn-sm">
+						<f:param name="email" value="#{o.email}"/>
+					</h:link> |
+					<h:commandLink value="Delete"
+								   onclick="confirmDelete(event)"
+								   actionListener="#{demo.izbrisiPacienta(o)}"
+								   styleClass="btn btn-danger btn-sm">
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</div>
+		<script>
+			function confirmDelete(event) {
+				if (!confirm("Are you sure you want to delete this pacient?")) {
+					event.preventDefault();
+				}
+			}
+		</script>
+
+	</h:form>
+
+</h:body>
 
 </html>
-<!--<tr>-->
-<!--<td>Spol:</td>-->
-<!--<td>-->
-<!--	<h:selectOneRadio value="#{demo.novaOseba.spol}">-->
-<!--		<f:selectItem itemValue="M" itemLabel="Moski" />-->
-<!--		<f:selectItem itemValue="Z" itemLabel="Zenska" />-->
-<!--	</h:selectOneRadio>-->
-<!--</td>-->
-<!--</tr>-->

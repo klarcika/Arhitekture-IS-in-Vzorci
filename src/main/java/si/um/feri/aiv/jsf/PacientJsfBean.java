@@ -9,7 +9,6 @@ import si.um.feri.aiv.vao.Zdravnik;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -23,6 +22,7 @@ public class PacientJsfBean implements Serializable {
         private Zdravnik selectedZdravnik;
         private String izbranEmail;
 
+
     {
         Pacient marcus= new Pacient("marcus","priimek","marcus@mail.si", LocalDate.parse("1990-10-01"), "/");
     }
@@ -33,7 +33,6 @@ public class PacientJsfBean implements Serializable {
         return dao.vrniPaciente();
     }
         public String shraniPacienta() throws Exception {
-            try{
                 log.info("JSF BEAN: dodajPacienta");
                 Pacient novi=new Pacient();
                 novi.setIme(izbranPacient.getIme());
@@ -44,10 +43,6 @@ public class PacientJsfBean implements Serializable {
                 dao.shrani(novi);
                 izbranPacient= new Pacient();
                 return "pacient dodan/ shranjen";
-
-            }catch (Exception e){
-                return null;
-            }
 
         }
     public Pacient getNewPacient() {
@@ -70,6 +65,13 @@ public class PacientJsfBean implements Serializable {
             } catch (Exception x) {
             }
         }
+    public Pacient getIzbranPacient(){
+        return izbranPacient;
+    }
+    public void setIzbranPacient(Pacient izbranPacient){
+        this.izbranPacient = izbranPacient;
+    }
+
 
     public Zdravnik getIzbranZdravnik() {
         return selectedZdravnik;
