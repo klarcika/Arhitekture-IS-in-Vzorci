@@ -1,60 +1,93 @@
 <!DOCTYPE html>
-<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	  xmlns:p="http://primefaces.org/ui">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <h:head>
 	<meta charset="UTF-8" />
-	<title>Keep It Simple &amp; Stupid</title>
+	<title>Pregled #{demors.izbranEmail}</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 </h:head>
-
 <h:body>
 	<f:view>
-		<h:form>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<a class="navbar-brand" href="index.html">(Umo)bolnica</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link"
+						   href="#{facesContext.externalContext.applicationContextPath}/faces/dodajZdravnika.xhtml">Zdravniki</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link"
+						   href="#{facesContext.externalContext.applicationContextPath}/faces/dodaj.xhtml">Pacienti</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 
-			[ <a href="#{facesContext.externalContext.applicationContextPath}/faces/vse.xhtml">Vse osebe</a> |
-			<a href="#{facesContext.externalContext.applicationContextPath}/faces/urejanje.xhtml?email=NULL">Dodajanje</a> ]
-			<hr />
+		<f:metadata>
+			<f:viewParam name="email" value="#{demors.izbranEmail}" />
+		</f:metadata>
 
-			<f:metadata>
-				<f:viewParam name="email" value="#{demo.izbranEmail}" />
-			</f:metadata>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-6">
+					<h3>Zdravnik #{demors.izbranZdravnik.ime} #{demors.izbranZdravnik.priimek}</h3>
+					<hr />
+					<dl class="row">
+						<dt class="col-sm-4">Ime:</dt>
+						<dd class="col-sm-8"><b>#{demors.izbranZdravnik.ime}</b></dd>
 
-			Ime: <b>#{demo.izbranaOseba.ime}</b><br/>
-			Priimek: <b>#{demo.izbranaOseba.priimek}</b><br/>
-			E-mail: <b>#{demo.izbranaOseba.email}</b><br/>
-			Vnos:	<b><h:outputText value="#{demo.izbranaOseba.datumVpisa.time}">
-			<f:convertDateTime pattern="dd. MM. yyyy HH:mm:ss" />
-		</h:outputText></b>
-			<br/><br/>
+						<dt class="col-sm-4">Priimek:</dt>
+						<dd class="col-sm-8"><b>#{demors.izbranZdravnik.priimek}</b></dd>
 
-			<h:dataTable value="#{demo.izbranaOseba.kontakti}" var="o" rendered="#{not empty demo.izbranaOseba.kontakti}">
-				<f:facet name="header">
-					<h:outputText value="Kontakti"/>
-				</f:facet>
-				<h:column>
-					<h:outputText value="#{o.tip}" rendered="#{o.urejanje eq false}"/>
-					<h:selectOneRadio value="#{o.tip}" rendered="#{o.urejanje}">
-						<f:selectItem itemValue="Doma" itemLabel="Doma" />
-						<f:selectItem itemValue="Služba" itemLabel="Služba" />
-						<f:selectItem itemValue="Drugo" itemLabel="Drugo" />
-					</h:selectOneRadio>
-				</h:column>
-				<h:column>
-					<h:outputText value="#{o.naziv}" rendered="#{o.urejanje eq false}" />
-					<h:inputText value="#{o.naziv}" rendered="#{o.urejanje}" />
-				</h:column>
-				<h:column>
-					<h:commandButton value="Shrani" actionListener="#{demo.shraniKontakt(o)}" rendered="#{o.urejanje}" />
-					<h:commandLink value="Izbriši" actionListener="#{demo.izbrisiKontakt(o)}" rendered="#{o.urejanje eq false}" />
-					|
-					<h:commandLink value="Uredi" actionListener="#{demo.urediKontakt(o)}" rendered="#{o.urejanje eq false}" />
-				</h:column>
-			</h:dataTable>
+						<dt class="col-sm-4">Email:</dt>
+						<dd class="col-sm-8"><b>#{demors.izbranZdravnik.email}</b></dd>
 
-			<h:commandLink value="Dodaj kontakt" actionListener="#{demo.dodajKontakt}"/>
+						<dt class="col-sm-4">Število pacientov</dt>
+						<dd class="col-sm-8"><b>#{demors.izbranZdravnik.stPacientov}</b></dd>
+					</dl>
+					<div >
+						<h:column>-->
+							<h:link value="Edit" outcome="editZdravnik"
+									styleClass="btn btn-warning btn-sm">
+								<f:param name="email" value="#{demors.izbranZdravnik.email}"/>
+							</h:link> |
+							<h:commandLink value="Delete"
+										   onclick="confirmDelete(event)"
+										   actionListener="#{demors.izbrisiZdravnika(demors.izbranZdravnik)}"
+										   styleClass="btn btn-danger btn-sm">
+							</h:commandLink>
+						</h:column></div>
 
-		</h:form>
+				</div>
+				</div>
+
+		</div>
+
 	</f:view>
+
+	<script>
+		function confirmDelete(event) {
+			if (!confirm("Zelite zbrisati zdravnika?")) {
+				event.preventDefault();
+			}
+		}
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
 </h:body>
 
 </html>

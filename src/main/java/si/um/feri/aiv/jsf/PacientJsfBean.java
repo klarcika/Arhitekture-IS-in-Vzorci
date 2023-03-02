@@ -40,6 +40,7 @@ public class PacientJsfBean implements Serializable {
                 novi.setEmail(izbranPacient.getEmail());
                 novi.setDatumRojstva(izbranPacient.getDatumRojstva());
                 novi.setPosebnosti(izbranPacient.getPosebnosti());
+                novi.setZdravnik(izbranPacient.getZdravnik());
                 dao.shrani(novi);
                 izbranPacient= new Pacient();
                 return "pacient dodan/ shranjen";
