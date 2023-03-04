@@ -32,6 +32,7 @@ public class Zdravnik {
         private String email;
 
        private int stPacientov;
+       private boolean uredi;
 
 
 
@@ -69,6 +70,13 @@ public class Zdravnik {
             return stPacientov;
         }
 
+    public boolean isUredi() {
+        return uredi;
+    }
+
+    public void setUredi(boolean uredi) {
+        this.uredi = uredi;
+    }
 
         @Override
         public String toString() {

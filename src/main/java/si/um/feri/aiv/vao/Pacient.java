@@ -20,6 +20,10 @@ public class Pacient {
     private String posebnosti;
     private Zdravnik zdravnik;
 
+
+
+    private boolean uredi;
+
     public Pacient() {
         this("", "", "", null, "", null);
     }
@@ -80,6 +84,14 @@ public class Pacient {
         public void setZdravnik(Zdravnik zdravnik) {
             this.zdravnik = zdravnik;
         }
+    public boolean isUredi() {
+        return uredi;
+    }
+
+    public void setUredi(boolean uredi) {
+        this.uredi = uredi;
+    }
+
 
         public int getId() {
         return id;

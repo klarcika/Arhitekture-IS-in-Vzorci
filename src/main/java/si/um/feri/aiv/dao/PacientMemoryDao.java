@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class PacientMemoryDao implements PacientDao {
+public class PacientMemoryDao implements SplosniDao<Pacient> {
 
-    Logger log=Logger.getLogger(PacientMemoryDao.class.toString());
+    Logger log=Logger.getLogger(SplosniDao.class.toString());
     private static PacientMemoryDao instance=new PacientMemoryDao();
 
     public static PacientMemoryDao getInstance() {
@@ -19,7 +19,7 @@ public class PacientMemoryDao implements PacientDao {
 
     private static List<Pacient> pacienti= Collections.synchronizedList(new ArrayList<Pacient>());
     @Override
-    public List<Pacient> vrniPaciente() {
+    public List<Pacient> izpisi() {
         log.info("DAO: Vracam vse paciente");
         return pacienti;
     }
@@ -44,54 +44,14 @@ public class PacientMemoryDao implements PacientDao {
     @Override
     public void izbrisi(String email) {
         log.info("Deleting: " + email);
-        Pacient zbrisan = null;
+        Pacient zaDelete = null;
         for (Pacient pacient : pacienti){
             if(pacient.getEmail().equals(email))
-                zbrisan = pacient;
+                zaDelete = pacient;
         }
 
-        if(zbrisan != null)
-            pacienti.remove(zbrisan);
-        }
+        if(zaDelete != null)
+            pacienti.remove(zaDelete);
+    }
 
-
-//    @Override
-//    public List<Pacient> vrniVse() {
-//        log.info("DAO: vračam vse");
-//        return pacienti;
-//    }
-
-
-//    @Override
-//    public void shrani(Pacient o)  {
-//        log.info("DAO: shranjujem "+o);
-//        if(najdi(o.getEmail())!=null) {
-//            log.info("DAO: urejam "+o);
-//            izbrisi(o.getEmail());
-//        }
-//        pacienti.add(o);
-//    }
-
-
-
-//    @Override
-//    public void izbrisiKontakt(int idKontakta, String emailOsebe) {
-//        log.info("DAO: brišem kontakt "+idKontakta+" osebe "+emailOsebe);
-//        Oseba najdena=najdi(emailOsebe);
-//        if (najdena==null) return;
-//        for (Iterator<Kontakt> i = najdena.getKontakti().iterator(); i.hasNext();) {
-//            if (i.next().getId()==idKontakta)
-//                i.remove();
-//        }
-//    }
-//
-//    @Override
-//    public void shraniKontakt(Kontakt k, String emailOsebe) {
-//        log.info("DAO: shranjujem kontakt "+k+" osebi "+emailOsebe);
-//        Oseba najdena=najdi(emailOsebe);
-//        if (najdena==null) return;
-//        izbrisiKontakt(k.getId(), emailOsebe);
-//        k.setId(najdena.getMaxKontaktId()+1);
-//        najdena.getKontakti().add(k);
-//    }
 }

@@ -13,11 +13,11 @@
 
 <h:body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-<!--        <a class="navbar-brand" href="index.html">(Umo)bolnica</a>-->
-<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"-->
-<!--                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
+        <a class="navbar-brand" href="index.html">(Umo)Bolnica</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -27,6 +27,10 @@
                 <li class="nav-item">
                     <a class="nav-link"
                        href="#{facesContext.externalContext.applicationContextPath}/faces/dodaj.xhtml">Pacienti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#{facesContext.externalContext.applicationContextPath}/faces/pregled.xhtml">Pregled Stanja</a>
                 </li>
             </ul>
         </div>
@@ -39,8 +43,8 @@
                          styleClass="table table-striped">
                 <h:column>
                     <f:facet name="header">Email</f:facet>
-                    <h:link value="#{o.email}" outcome="detailsZdravnik">
-                        <f:param name="email" value="#{o.email}"></f:param>
+                    <h:link value="#{o.email}" outcome="podrobnosti">
+                        <f:param name="email" value="#{o.email}" />
                     </h:link>
                 </h:column>
                 <h:column>
@@ -55,26 +59,8 @@
                     <f:facet name="header">Število pacientov</f:facet>
                     #{o.stPacientov}
                 </h:column>
-<!--                <h:column>-->
-<!--                    <h:link value="Edit" outcome="editZdravnik"-->
-<!--                            styleClass="btn btn-warning btn-sm">-->
-<!--                        <f:param name="email" value="#{o.email}"/>-->
-<!--                    </h:link> |-->
-<!--                    <h:commandLink value="Delete"-->
-<!--                                   onclick="confirmDelete(event)"-->
-<!--                                   actionListener="#{demors.izbrisiZdravnika(o)}"-->
-<!--                                   styleClass="btn btn-danger btn-sm">-->
-<!--                    </h:commandLink>-->
-<!--                </h:column>-->
             </h:dataTable>
         </div>
-<!--        <script>-->
-<!--            function confirmDelete(event) {-->
-<!--                if (!confirm("Zelite zbrisati zdravnika?")) {-->
-<!--                    event.preventDefault();-->
-<!--                }-->
-<!--            }-->
-<!--        </script>-->
     </h:form>
 
 

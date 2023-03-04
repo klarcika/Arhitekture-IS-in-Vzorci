@@ -2,7 +2,6 @@ package si.um.feri.aiv.jsf;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-import si.um.feri.aiv.dao.PacientDao;
 import si.um.feri.aiv.dao.PacientMemoryDao;
 import si.um.feri.aiv.vao.Pacient;
 import si.um.feri.aiv.vao.Zdravnik;
@@ -24,13 +23,13 @@ public class PacientJsfBean implements Serializable {
 
 
     {
-        Pacient marcus= new Pacient("marcus","priimek","marcus@mail.si", LocalDate.parse("1990-10-01"), "/");
+        Pacient marcus= new Pacient("marcus","priimek","marcus@mail.si", LocalDate.parse("1990-10-01"), "/", null);
     }
 
 
     public List<Pacient> getVsiPacienti() throws Exception {
         this.izbranPacient = new Pacient();
-        return dao.vrniPaciente();
+        return dao.izpisi();
     }
         public String shraniPacienta() throws Exception {
                 log.info("JSF BEAN: dodajPacienta");

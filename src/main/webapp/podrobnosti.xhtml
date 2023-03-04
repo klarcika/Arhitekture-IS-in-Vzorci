@@ -10,7 +10,7 @@
 <h:body>
 	<f:view>
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-			<a class="navbar-brand" href="index.html">(Umo)bolnica</a>
+			<a class="navbar-brand" href="index.html">(Umo)Bolnica</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -24,6 +24,10 @@
 					<li class="nav-item">
 						<a class="nav-link"
 						   href="#{facesContext.externalContext.applicationContextPath}/faces/dodaj.xhtml">Pacienti</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link"
+						   href="#{facesContext.externalContext.applicationContextPath}/faces/pregled.xhtml">Pregled Stanja</a>
 					</li>
 				</ul>
 			</div>
@@ -53,14 +57,20 @@
 					</dl>
 					<div >
 						<h:column>-->
-							<h:link value="Edit" outcome="editZdravnik"
+							<h:link value="Edit" outcome="urediZdravnika"
 									styleClass="btn btn-warning btn-sm">
 								<f:param name="email" value="#{demors.izbranZdravnik.email}"/>
 							</h:link> |
 							<h:commandLink value="Delete"
 										   onclick="confirmDelete(event)"
 										   actionListener="#{demors.izbrisiZdravnika(demors.izbranZdravnik)}"
-										   styleClass="btn btn-danger btn-sm">
+										   styleClass="btn btn-danger btn-sm"
+											>
+								<h:link value="delete" outcome="dodajZdravnika" onclick="confirmDelete(event)"
+								>
+
+								</h:link>
+
 							</h:commandLink>
 						</h:column></div>
 
