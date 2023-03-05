@@ -35,7 +35,7 @@ public class PregledJsfBean implements Serializable {
                 if(pacient.getZdravnik() == zdravnik){
                     njegovi.add(pacient);
 
-                    log.info("Zdravnikov majl: " + zdravnik.getEmail());
+                    log.info("Zdravnikov mail: " + zdravnik.getEmail());
                     if(Objects.equals(zdravnik.getEmail(), "") || Objects.equals(zdravnik.getEmail(), "null"))
                         this.neopredeljeni++;
                 }
@@ -43,7 +43,10 @@ public class PregledJsfBean implements Serializable {
             relacija.put(zdravnik, njegovi);
         }
 
-        return relacija;
+        return relacija ;
+    }
+    public Integer getNeopredeljeni() {
+        return this.neopredeljeni;
     }
 
 }

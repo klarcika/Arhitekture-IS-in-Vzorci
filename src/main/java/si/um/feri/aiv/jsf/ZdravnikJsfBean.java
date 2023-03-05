@@ -37,8 +37,11 @@ public class ZdravnikJsfBean implements Serializable {
     }
 
     public void izbrisiZdravnika(Zdravnik o) throws Exception {
-        dao.izbrisi(o.getEmail());
-    }
+            if(o.getEmail().equals(dao.najdi(o.getEmail()))){
+                dao.izbrisi(o.getEmail());
+            }
+        }
+
 
 
     public void urediZdravnika(String izbranEmail) throws Exception {

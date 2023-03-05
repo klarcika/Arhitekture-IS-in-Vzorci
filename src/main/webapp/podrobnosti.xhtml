@@ -55,28 +55,23 @@
 						<dt class="col-sm-4">Število pacientov</dt>
 						<dd class="col-sm-8"><b>#{demors.izbranZdravnik.stPacientov}</b></dd>
 					</dl>
-					<div >
-						<h:column>-->
+					<div>
+						<h:column>
 							<h:link value="Edit" outcome="urediZdravnika"
 									styleClass="btn btn-warning btn-sm">
 								<f:param name="email" value="#{demors.izbranZdravnik.email}"/>
 							</h:link> |
 							<h:commandLink value="Delete"
 										   onclick="confirmDelete(event)"
-										   actionListener="#{demors.izbrisiZdravnika(demors.izbranZdravnik)}"
-										   styleClass="btn btn-danger btn-sm"
-											>
-								<h:link value="delete" outcome="dodajZdravnika" onclick="confirmDelete(event)"
-								>
-
-								</h:link>
-
+										   actionListener="#{demors.izbrisiZdravnika(demo.izbranZdravnik)}"
+										   styleClass="btn btn-danger btn-sm">
 							</h:commandLink>
-						</h:column></div>
+						</h:column>
 
 				</div>
 				</div>
 
+		</div>
 		</div>
 
 	</f:view>
