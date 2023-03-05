@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://java.sun.com/jsf/composite">
 
 <h:head>
     <meta charset="UTF-8" />
@@ -34,12 +35,19 @@
         </nav>
 
 
-        <div class="container mt-5">
-            <div class="row">
-
-            </div>
-        </div>
-
+        <h:form>
+            <h:dataTable value="#{pregled.listZdravnikov().entrySet().toArray()}" var="entry">
+                <h:column headerText="Zdravnik">
+                    #{entry.key.ime} #{entry.key.priimek}
+                </h:column>
+                <h:column headerText="Pacienti">
+                    <ul>
+                        <li><p:datalist value="#{entry.value}" var="pacient">#{demo.ime} #{demo.priimek}</p:datalist></li>
+                    </ul>
+                </h:column>
+            </h:dataTable>
+            <p>Število neopredeljenih: #{opredeljeniBean.getNeopredeljeni()}</p>
+        </h:form>
 
 
     </f:view>

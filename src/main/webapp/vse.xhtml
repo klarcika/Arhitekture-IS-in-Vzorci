@@ -59,7 +59,7 @@
 					</dl>
 					<div>
 						<h:column>
-							<h:link value="Edit" outcome="urediZdravnika"
+							<h:link value="Edit" outcome="editPacient"
 									styleClass="btn btn-warning btn-sm">
 								<f:param name="email" value="#{demo.izbranPacient.email}"/>
 							</h:link> |
@@ -75,7 +75,7 @@
 		</div>
 		<script>
 			function confirmDelete(event) {
-				if (!confirm("Are you sure you want to delete this pacient?")) {
+				if (!confirm("zelite zbrisati pacienta?")) {
 					event.preventDefault();
 				}
 			}
