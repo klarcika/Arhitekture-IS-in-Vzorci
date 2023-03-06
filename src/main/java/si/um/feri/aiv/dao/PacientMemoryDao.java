@@ -1,6 +1,7 @@
 package si.um.feri.aiv.dao;
 
 import si.um.feri.aiv.vao.Pacient;
+import si.um.feri.aiv.vao.Zdravnik;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,10 +12,17 @@ import java.util.logging.Logger;
 public class PacientMemoryDao implements SplosniDao<Pacient> {
 
     Logger log=Logger.getLogger(SplosniDao.class.toString());
-    private static PacientMemoryDao instance=new PacientMemoryDao();
+    private static PacientMemoryDao instance=null;
 
-    public static PacientMemoryDao getInstance() {
+    public synchronized static PacientMemoryDao getInstance() {
+        if(instance==null){
+            return new PacientMemoryDao();
+        }
         return instance;
+    }
+
+    private PacientMemoryDao(){
+
     }
 
     private static List<Pacient> pacienti= Collections.synchronizedList(new ArrayList<Pacient>());
@@ -44,14 +52,12 @@ public class PacientMemoryDao implements SplosniDao<Pacient> {
     @Override
     public void izbrisi(String email) {
         log.info("Deleting: " + email);
-        Pacient zaDelete = null;
-        for (Pacient pacient : pacienti){
-            if(pacient.getEmail().equals(email))
-                zaDelete = pacient;
+        for (Iterator<Pacient> z = pacienti.iterator(); z.hasNext(); ) {
+            if (z.next().getEmail().equals(email)) {
+                z.remove();
+            }
         }
 
-        if(zaDelete != null)
-            pacienti.remove(zaDelete);
     }
 
 }

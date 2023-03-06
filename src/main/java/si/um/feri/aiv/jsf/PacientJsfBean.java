@@ -50,7 +50,10 @@ public class PacientJsfBean implements Serializable {
     }
 
         public void izbrisiPacienta(Pacient o) throws Exception {
-            dao.izbrisi(o.getEmail());
+            log.info("Deleting: " + o.getEmail());
+            if(o.getEmail() != null){
+                dao.izbrisi(o.getEmail());
+            }
         }
 
         public String getIzbranEmail() {

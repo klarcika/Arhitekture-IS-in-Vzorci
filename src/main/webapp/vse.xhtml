@@ -63,23 +63,22 @@
 									styleClass="btn btn-warning btn-sm">
 								<f:param name="email" value="#{demo.izbranPacient.email}"/>
 							</h:link> |
-							<h:commandLink value="Delete"
-										   onclick="confirmDelete(event)"
-										   actionListener="#{demo.izbrisiPacienta(demo.izbranPacient)}"
-										   styleClass="btn btn-danger btn-sm">
-							</h:commandLink>
+							<h:link value="Delete" outcome="dodaj"
+									styleClass="btn btn-danger btn-sm">
+								<f:param  value="#{demo.izbrisiPacienta(demo.izbranPacient)}"/>
+							</h:link>
 						</h:column>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script>
-			function confirmDelete(event) {
-				if (!confirm("zelite zbrisati pacienta?")) {
-					event.preventDefault();
-				}
-			}
-		</script>
+<!--		<script>-->
+<!--			function confirmDelete(event) {-->
+<!--				if (!confirm("zelite zbrisati pacienta?")) {-->
+<!--					event.preventDefault();-->
+<!--				}-->
+<!--			}-->
+<!--		</script>-->
 
 
 	</f:view>

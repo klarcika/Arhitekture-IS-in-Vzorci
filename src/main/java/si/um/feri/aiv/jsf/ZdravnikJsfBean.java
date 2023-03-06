@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
+
+
 @Named("demors") // zdravnik
 @RequestScoped
 public class ZdravnikJsfBean implements Serializable {
@@ -37,24 +39,11 @@ public class ZdravnikJsfBean implements Serializable {
     }
 
     public void izbrisiZdravnika(Zdravnik o) throws Exception {
-            if(o.getEmail().equals(dao.najdi(o.getEmail()))){
-                dao.izbrisi(o.getEmail());
-            }
-        }
-
-
-
-    public void urediZdravnika(String izbranEmail) throws Exception {
-        log.info("posodabljam zdravnika"+ izbranZdravnik);
-        Zdravnik X = dao.najdi(izbranEmail);
-        izbranZdravnik.setIme(izbranZdravnik.getIme());
-        izbranZdravnik.setPriimek(izbranZdravnik.getPriimek());
-        izbranZdravnik.setEmail(izbranZdravnik.getEmail());
-        izbranZdravnik.setStPacientov(izbranZdravnik.getStPacientov());
-        dao.shrani(izbranZdravnik);
-        log.info("zdravnik posodobljen" + izbranZdravnik);
+        log.info("to ne dela: " + o.getEmail());
+        dao.izbrisi(o.getEmail());
 
     }
+
 
     public void setIzbranEmail(String email) throws Exception {
         izbranEmail=email;

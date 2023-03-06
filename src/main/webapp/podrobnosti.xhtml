@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
 	<meta charset="UTF-8" />
@@ -25,10 +25,6 @@
 						<a class="nav-link"
 						   href="#{facesContext.externalContext.applicationContextPath}/faces/dodaj.xhtml">Pacienti</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link"
-						   href="#{facesContext.externalContext.applicationContextPath}/faces/pregled.xhtml">Pregled Stanja</a>
-					</li>
 				</ul>
 			</div>
 		</nav>
@@ -40,7 +36,7 @@
 		<div class="container mt-5">
 			<div class="row">
 				<div class="col-md-6">
-					<h3>Zdravnik #{demors.izbranZdravnik.ime} #{demors.izbranZdravnik.priimek}</h3>
+					<h3>Pacient #{demors.izbranZdravnik.ime} #{demors.izbranZdravnik.priimek}</h3>
 					<hr />
 					<dl class="row">
 						<dt class="col-sm-4">Ime:</dt>
@@ -52,7 +48,7 @@
 						<dt class="col-sm-4">Email:</dt>
 						<dd class="col-sm-8"><b>#{demors.izbranZdravnik.email}</b></dd>
 
-						<dt class="col-sm-4">Število pacientov</dt>
+						<dt class="col-sm-4">Število pacientov:</dt>
 						<dd class="col-sm-8"><b>#{demors.izbranZdravnik.stPacientov}</b></dd>
 					</dl>
 					<div>
@@ -61,28 +57,30 @@
 									styleClass="btn btn-warning btn-sm">
 								<f:param name="email" value="#{demors.izbranZdravnik.email}"/>
 							</h:link> |
-							<h:commandLink value="Delete"
-										   onclick="confirmDelete(event)"
-										   actionListener="#{demors.izbrisiZdravnika(demo.izbranZdravnik)}"
-										   styleClass="btn btn-danger btn-sm">
-							</h:commandLink>
+							<h:link value="Delete" outcome="dodajZdravnika"
+									styleClass="btn btn-danger btn-sm">
+								<f:param  value="#{demors.izbrisiZdravnika(demors.izbranZdravnik)}"/>
+							</h:link>
+<!--							<h:commandButton value="Delete"-->
+
+<!--											 actionListener="#{demors.izbrisiZdravnika(demors.izbranZdravnik)}"-->
+<!--											 styleClass="btn btn-danger btn-sm" >-->
+<!--							</h:commandButton>-->
 						</h:column>
-
+					</div>
 				</div>
-				</div>
+			</div>
+		</div>
+<!--		<script>-->
+<!--			function confirmDelete(event) {-->
+<!--				if (!confirm("zelite zbrisati zdravnika?")) {-->
+<!--					event.preventDefault();-->
+<!--				}-->
+<!--			}-->
+<!--		</script>-->
 
-		</div>
-		</div>
 
 	</f:view>
-
-	<script>
-		function confirmDelete(event) {
-			if (!confirm("Zelite zbrisati zdravnika?")) {
-				event.preventDefault();
-			}
-		}
-	</script>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
